@@ -5,10 +5,12 @@ import { Book } from './models/bookModels.js';
 dotenv.config();
 
 const app = express();
+
+//middleware for parsing request body
 app.use(express.json());
 
 
-
+// route to save a new book
 app.post('/books', async (req,res) => {
     try {
         if(!req.body.title || !req.body.author || !req.body.publishYear){
