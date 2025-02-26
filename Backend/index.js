@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { json } from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { Book } from './models/bookModels.js';
@@ -28,6 +28,21 @@ app.post('/books', async (req,res) => {
     } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message })
+    }
+})
+
+
+// route to get all the books
+app.get('/getBooks', async (req,res) => {
+    try {
+        const books = await Book.find({});
+        return res.status(200).json({
+            count: books.length,
+            data: books
+        })
+    } catch (error) {
+        console.log(message.error)
+        res.status(500).send({ message: message.error})
     }
 })
 
